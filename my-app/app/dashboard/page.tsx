@@ -3,13 +3,13 @@ import axios from "axios";
 import React, { useState } from "react";
 
 const page = () => {
-  const [file, setFile] = useState(null);
+  const [image, setImage] = useState(null);
 
   const handleSubmit = (e) => {
     const formData = new FormData();
-    formData.append("file", file);
+    formData.append("image", image);
     axios
-      .post("https://interview-mock-api.onrender.com/upload",formData)
+      .post("https://interview-mock-api.onrender.com/upload", formData)
       .then((res) => {
         console.log(res.data.message);
       })
@@ -30,7 +30,7 @@ const page = () => {
             <input
               type="file"
               name="file"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={(e) => setImage(e.target.files[0])}
               id="file"
             />
             <button type="Submit">Submit</button>
