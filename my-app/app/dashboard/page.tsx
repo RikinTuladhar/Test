@@ -9,7 +9,7 @@ const page = () => {
     const formData = new FormData();
     formData.append("file", file);
     axios
-      .post("https://interview-mock-api.onrender.com/upload")
+      .post("https://interview-mock-api.onrender.com/upload",formData)
       .then((res) => {
         console.log(res.data.message);
       })
