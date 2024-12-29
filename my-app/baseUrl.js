@@ -1,2 +1,2 @@
-const base = "https://interview-mock-api.onrender.com/"
+const base = "https://interview-mock-api.onrender.com"
 export default base

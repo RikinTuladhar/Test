@@ -1,12 +1,15 @@
 "use client";
 import Image from "next/image";
 import User from "@/types/User";
-import { useState } from "react";
+import { useActionState, useState } from "react";
 import UserApi from "@/ApisEndPoints/UserApi";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
+
+  // const [state,loginAction] = useActionState(signup,undefined);
+
   const router = useRouter();
   const [data, setData] = useState<User>({
     username: "",
@@ -14,7 +17,7 @@ export default function Home() {
   });
   console.log(data);
 
-  // const { signIn } = UserApi();
+  const { signIn } = UserApi();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,20 +31,30 @@ export default function Home() {
       alert("username and password cannot be empty");
       return;
     }
-    try {
-      const res = await axios.post(
-        "https://interview-mock-api.onrender.com/signup",
-        data
-      );
-      const resData = await res?.data.message;
-      alert(resData);
-      setTimeout(() => {
-        router.push("/login");
-      }, 1500);
-    } catch (error:any) {
-      alert(error.response.data.message);
-      console.log("Error when signing in", error);
-    }
+
+   try {
+    const res = await signIn(data);
+    alert(res);
+   } catch (error:any) {
+    console.log("Inside page",error);
+    alert(error?.message);
+   }
+
+
+    // try {
+    //   const res = await axios.post(
+    //     "https://interview-mock-api.onrender.com/signup",
+    //     data
+    //   );
+    //   const resData = await res?.data.message;
+    //   alert(resData);
+    //   setTimeout(() => {
+    //     router.push("/login");
+    //   }, 1500);
+    // } catch (error:any) {
+    //   alert(error.response.data.message);
+    //   console.log("Error when signing in", error);
+    // }
   };
 
   return (

@@ -28,17 +28,17 @@ const page = () => {
       alert("username and password cannot be empty");
       return;
     }
-    try {
-      const res = await axios.post(
-        "https://interview-mock-api.onrender.com/login",
-        data
-      );
-      const token = await res?.data.token;
-      localStorage.setItem("token", JSON.stringify(token));
-      router.push("/dashboard");
-    } catch (error) {
-      console.log("Error when signing in", error);
-    }
+    // try {
+    //   const res = await axios.post(
+    //     "https://interview-mock-api.onrender.com/login",
+    //     data
+    //   );
+    //   const token = await res?.data.token;
+    //   localStorage.setItem("token", JSON.stringify(token));
+    //   router.push("/dashboard");
+    // } catch (error) {
+    //   console.log("Error when signing in", error);
+    // }
   };
   return (
     <div className="w-full text-black h-screen space-y-10 flex-col flex justify-center items-center">
